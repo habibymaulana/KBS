@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: KBS Web
+    env: php
+    plan: free
+    region: oregon
+    repo: https://github.com/habibymaulana/KBS
+    branch: main
+    buildCommand: |
+      composer install --no-interaction --prefer-dist --optimize-autoloader
+      php artisan key:generate || true
+      npm ci --silent
+      npm run build --silent
+    startCommand: php -S 0.0.0.0:$PORT -t public
+
+databases:
+  - name: kbs-database
+    engine: postgresql
+    plan: starter
+    numNodes: 1
+
+# Notes:
+# - This render.yaml is a starting point. After connecting the repository in
+#   Render, you should confirm service names, region, and plans in the Render
+#   dashboard. Provide environment variables (APP_KEY, DB_*, etc.) via the
+#   Render dashboard or as secrets. Run migrations after deploy: `php artisan migrate --force`.

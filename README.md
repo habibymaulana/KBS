@@ -57,3 +57,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## Project License & Hosting Recommendation
+
+- **License:** This repository includes a project `LICENSE` (MIT) with an attribution note: this project was developed as a class assignment **rj23c Kelompok KBS**. Please retain the attribution when reusing the code.
+
+- **Recommended hosting for the full application:** Render (https://render.com). Render supports PHP web services and managed databases and integrates directly with GitHub for automatic deploys.
+
+Quick deploy checklist for Render:
+
+1. Create a Render account and connect GitHub.
+2. On Render, create a new **Web Service**, select this repository and branch `main`, and choose the PHP environment.
+3. Add environment variables in Render's dashboard (`APP_ENV`, `APP_KEY`, `DB_CONNECTION`, `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, etc.).
+4. Provision a managed database (Postgres/MySQL) on Render and update DB_* variables.
+5. Run migrations and seeders (via Render's console or a one-time deploy command): `php artisan migrate --force` and `php artisan db:seed --force`.
+6. (Optional) Configure a custom domain and HTTPS in Render.
+
+If you prefer a container deployment, consider Fly.io or Railway and add a `Dockerfile` to the repository.
+
+If you want, I can: create a GitHub Actions workflow to automate builds or prepare a `render.yaml` for Render. I have added a starter `render.yaml` in the repository to help you create a Render service quickly.
+
+Using the included `render.yaml`:
+
+- Connect your GitHub account to Render and add this repository.
+- When creating a new service on Render, choose "Use render.yaml" so Render will use the file to create the web service and a managed database automatically.
+- After service creation, add necessary environment variables in Render (see checklist earlier), then trigger a deploy.
+
